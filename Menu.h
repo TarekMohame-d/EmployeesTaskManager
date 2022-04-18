@@ -1,14 +1,16 @@
 #pragma once
 #include "Manager.h"
 #include "Employee.h"
+#include "Tasks.h"
 class Menu
 {
 public:
 	int choice;
 	bool out;
+	Tasks task;
 	Menu();
-	int firstMenu();
+	int mainMenu();
 	bool ManagerPassword(Manager manger);
 	int employeeLogin(Employee employee[]);
-	int ManagerPageMenu();
+	void ManagerPageMenu();
 };

@@ -1,12 +1,12 @@
 #include "Menu.h"
-
 Menu::Menu()
 {
 	out = true;
 	choice = 0;
+	task.defaultTasks();
 }
 
-int Menu::firstMenu()
+int Menu::mainMenu()
 {
 	while (true)
 	{
@@ -118,22 +118,59 @@ int Menu::employeeLogin(Employee employee[])
 	return userInControl;
 }
 
-int Menu::ManagerPageMenu()
+void Menu::ManagerPageMenu()
 {
 	int choice;
-	while (true)
+	bool flag = true;
+	while (flag == true)
 	{
-		cout << "[1] to add new Task\n[2] to display tasks\n[3] to edit existing task\n";
-		cin >> choice;
-		cout << endl;
-		if (choice == 1 || choice == 2 || choice == 3)
+		while (true)
 		{
+			cout << "[1] to add new Task\n[2] to display tasks\n[3] to edit existing task\n";
+			cin >> choice;
+			cout << endl;
+			if (choice == 1 || choice == 2 || choice == 3)
+			{
+				break;
+			}
+			else
+			{
+				cout << "\nInvalid choice, Please try again...\n\n";
+			}
+		}
+		switch (choice)
+		{
+		case 1:
+			task.readTasks();
+			break;
+		case 2:
+			task.displayTasks();
+			break;
+		case 3:
+			// edit existing task
 			break;
 		}
-		else
+		cout << "\n\nIf you want to make another operation please\n";
+		cout << "Press [1] to go to Manager menu or [*] to go to Main menu\n\n";
+		string c;
+		while (true)
 		{
-			cout << "\nInvalid choice, Please try again...\n\n";
+			cout << "Your choice : ";
+			cin >> c;
+			if (c == "1")
+			{
+				flag = true;
+				break;
+			}
+			else if (c == "*")
+			{
+				flag = false;
+				break;
+			}
+			else
+			{
+				cout << "\nInvalid choice, Please try again...\n\n";
+			}
 		}
 	}
-	return choice;
 }

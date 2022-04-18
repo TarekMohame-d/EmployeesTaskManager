@@ -3,5 +3,5 @@
 Manager::Manager()
 {
 	managerName = "BOSS";
-	managerPw = 123456;
+	managerPw = 123;
 }

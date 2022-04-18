@@ -1,12 +1,9 @@
 #include "Menu.h"
-#include "Tasks.h"
 #include <windows.h>
 void program()
 {
-	Employee employee[5];
 	Manager manager;
-	Tasks task;
-	task.defaultTasks();
+	Employee employee[5];
 	employee->readEmployeeData(employee);
 	Menu menu;
 	int userInControl; // To catch employee number in the array of employees that log in
@@ -15,28 +12,16 @@ void program()
 		while (true)
 		{
 			cout << "\n\n\n\t\t\t\t ******** Welcome to Employees Task Manager system ********\t\t\t\n\n\n\n";
-			int choice = menu.firstMenu();
-			if (choice == 1)
+			int choice = menu.mainMenu();
+			if (choice == 1) // Manager page
 			{
 				if (menu.ManagerPassword(manager))
 				{
-					int choice = menu.ManagerPageMenu();
-					switch (choice)
-					{
-					case 1:
-						task.readTasks();
-						break;
-					case 2:
-						task.displayTasks();
-						break;
-					case 3:
-						// edit existing task
-						break;
-					}
+					menu.ManagerPageMenu();
 				}
 				else continue;
 			}
-			else
+			else // Employee page
 			{
 				userInControl = menu.employeeLogin(employee);
 				if (menu.out == true)
@@ -55,7 +40,7 @@ void program()
 int main()
 {
 	HANDLE console_color = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(console_color, 3);
+	SetConsoleTextAttribute(console_color, 10);
 	program();
 
 	return 0;

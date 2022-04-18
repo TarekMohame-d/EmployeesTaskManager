@@ -197,7 +197,33 @@ void Tasks::defaultTasks()
 void Tasks::readTasks()
 {
 	char choice;
-	
+	Tasks task;
+	cout << "Enter task name : ";
+	cin >> task.taskName;
+	cout << "Enter task description : ";
+	cin >> task.taskDescription;
+	cout << "Enter the assigning date : ";
+	cin >> task.assigningDate;
+	cout << "Enter the ending date : ";
+	cin >> task.endingDate;
+	cout << "Task assigned to : ";
+	cin >> task.assignedTo;
+	//cout << "Priority values from [ 1 - 9 ] : ";
+	//cin >> task.priorityValues;
+	while (true)
+	{
+		cout << "Priority value from [ 1 - 9 ] : ";
+		cin >> task.priorityValues;
+		if (task.priorityValues > 0 && task.priorityValues < 10)
+		{
+			break;
+		}
+		else
+		{
+			cout << "\n\nPriority value must be greater than 0 and less than 10!\n\n";
+		}
+	}
+	myList.insert(task);
 	cout << "\n\nDo you want to add another task ? [Y/N]\n";
 	while (true)
 	{
