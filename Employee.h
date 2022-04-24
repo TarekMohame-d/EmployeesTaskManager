@@ -7,5 +7,5 @@ public:
 	string employeeName;
 	int employeeId;
 	int empDepartmentNumber;
-	void readEmployeeData(Employee employee[]);
+	void employeeData(Employee employee[]);
 };

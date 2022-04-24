@@ -12,7 +12,10 @@ public:
 	string assignedTo;
 	int priorityValues;
 	void readTasks();
-	void displayTasks();
+	void displayTasks(); // for manager
+	void deleteTask();
+	void displayEmployeeTasks(string name);
+	void editTasks();
 	void defaultTasks();
 	Tasks();
 };
