@@ -4,7 +4,7 @@ void program()
 {
 	Manager manager;
 	Employee employee[5];
-	employee->readEmployeeData(employee);
+	employee->employeeData(employee);
 	Menu menu;
 	int userInControl; // To catch employee number in the array of employees that log in
 	while (true)
@@ -24,13 +24,13 @@ void program()
 			else // Employee page
 			{
 				userInControl = menu.employeeLogin(employee);
-				if (menu.out == true)
+				if (menu.out1 == true)
 				{
 					continue;
 				}
 				else
 				{
-					// employee page
+					menu.employeePageMenu(employee);
 				}
 			}
 		}

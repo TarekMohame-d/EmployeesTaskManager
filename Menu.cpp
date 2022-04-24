@@ -1,7 +1,9 @@
 #include "Menu.h"
+int userInControl = -1; // To know which employee are currently logged in
 Menu::Menu()
 {
-	out = true;
+	out1 = true;
+	out2 = false;
 	choice = 0;
 	task.defaultTasks();
 }
@@ -30,7 +32,7 @@ bool Menu::ManagerPassword(Manager manager)
 	int pass; 
 	char c; // user choice
 	bool flag = true;
-	while (flag)
+	while (flag == true)
 	{
 		cout << "Enter Manager password : ";
 		cin >> pass;
@@ -70,7 +72,6 @@ bool Menu::ManagerPassword(Manager manager)
 int Menu::employeeLogin(Employee employee[])
 {
 	int id;
-	int userInControl = -1; // To know which employee are currently logged in
 	char answer;
 	bool flag = true;
 	while (flag)
@@ -84,6 +85,7 @@ int Menu::employeeLogin(Employee employee[])
 				cout << " \n\n-------------------- Login successfully, Welecome " << employee[i].employeeName << " --------------------\n\n";
 				userInControl = i;
 				flag = false;
+				out1 = false;
 				break;
 			}
 		}
@@ -100,13 +102,13 @@ int Menu::employeeLogin(Employee employee[])
 			if (answer == 'y')
 			{
 				cout << endl;
-				out = false;
+				out1 = false; // out from employee login menu
 				break;
 			}
 			else if (answer == 'n')
 			{
 				flag = false;
-				out = true;
+				out1 = true;  // out from employee login menu
 				break;
 			}
 			else
@@ -126,10 +128,10 @@ void Menu::ManagerPageMenu()
 	{
 		while (true)
 		{
-			cout << "[1] to add new Task\n[2] to display tasks\n[3] to edit existing task\n";
+			cout << "[1] to add new Task\n[2] to display tasks\n[3] to edit existing task\n[4] to delete task\n";
 			cin >> choice;
 			cout << endl;
-			if (choice == 1 || choice == 2 || choice == 3)
+			if (choice == 1 || choice == 2 || choice == 3 || choice == 4)
 			{
 				break;
 			}
@@ -147,11 +149,71 @@ void Menu::ManagerPageMenu()
 			task.displayTasks();
 			break;
 		case 3:
-			// edit existing task
+			task.editTasks();
+			break;
+		case 4:
+			task.deleteTask();
 			break;
 		}
 		cout << "\n\nIf you want to make another operation please\n";
 		cout << "Press [1] to go to Manager menu or [*] to go to Main menu\n\n";
+		string c;
+		while (true)
+		{
+			cout << "Your choice : ";
+			cin >> c;
+			if (c == "1")
+			{
+				flag = true;
+				break;
+			}
+			else if (c == "*")
+			{
+				flag = false;
+				break;
+			}
+			else
+			{
+				cout << "\nInvalid choice, Please try again...\n\n";
+			}
+		}
+	}
+}
+
+void Menu::employeePageMenu(Employee employee[])
+{
+	int choice;
+	bool flag = true;
+	while (flag == true)
+	{
+		while (true)
+		{
+			cout << "[1] to display your tasks\n[2] to remove finished task\n[3] postpone a task to another day\n";
+			cin >> choice;
+			cout << endl;
+			if (choice == 1 || choice == 2 || choice == 3)
+			{
+				break;
+			}
+			else
+			{
+				cout << "\nInvalid choice, Please try again...\n\n";
+			}
+		}
+		switch (choice)
+		{
+		case 1:
+			task.displayEmployeeTasks(employee[userInControl].employeeName);
+			break;
+		case 2:
+			// to remove finished task
+			break;
+		case 3:
+			// postpone a task to another day
+			break;
+		}
+		cout << "\n\nIf you want to make another operation please\n";
+		cout << "Press [1] to go to Employee menu or [*] to go to Main menu\n\n";
 		string c;
 		while (true)
 		{
