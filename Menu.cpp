@@ -129,6 +129,7 @@ void Menu::ManagerPageMenu()
 		while (true)
 		{
 			cout << "[1] to add new Task\n[2] to display tasks\n[3] to edit existing task\n[4] to delete task\n";
+			cout << "Your choice : ";
 			cin >> choice;
 			cout << endl;
 			if (choice == 1 || choice == 2 || choice == 3 || choice == 4)
