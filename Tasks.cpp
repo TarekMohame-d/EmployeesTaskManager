@@ -131,7 +131,7 @@ void Tasks::defaultTasks()
 	task[4].taskDescription = "5th";
 	task[4].assigningDate = "7/9/2022";
 	task[4].endingDate = "13/9/2022";
-	task[4].assignedTo = "1";
+	task[4].assignedTo = "Bibo";
 	task[4].priorityValues = 4;
 	myList.insert(task[4]);
 
@@ -171,7 +171,7 @@ void Tasks::defaultTasks()
 	task[9].taskDescription = "10th";
 	task[9].assigningDate = "30/10/2022";
 	task[9].endingDate = "5/11/2022";
-	task[9].assignedTo = "1";
+	task[9].assignedTo = "Osha";
 	task[9].priorityValues = 7;
 	myList.insert(task[9]);
 
@@ -279,11 +279,12 @@ void Tasks::deleteTask()
 	string name;
 	int pos = 0;
 	bool found = false;
-	char choice;
 	Node* temp = myList.head;
 
 	cout << "Enter task name you want to delete : ";
-	cin >> name;
+	//cin >> name;
+	cin.ignore();
+	getline(cin, name);
 	while (temp != 0)
 	{
 		if (name != temp->value.taskName)
@@ -351,28 +352,49 @@ void Tasks::displayEmployeeTasks(string name)
 void Tasks::editTasks()
 {
 	string taskName;
-	Node* ptr = myList.head;
-	cout << "Enter the name of the task you want to edit : ";
-	cin >> taskName;
-	while (ptr != 0)
+	Node* ptr;
+	bool found = false, flag = true;
+	int choice;
+	while (flag == true)
 	{
-		if (taskName == ptr->value.taskName)
+		int pos = 0;
+		ptr = myList.head;
+		cout << "Enter the name of the task you want to edit : ";
+		cin.ignore();
+		getline(cin, taskName);
+		while (ptr != 0)
 		{
+			if (taskName != ptr->value.taskName)
+			{
+				pos++;
+				ptr = ptr->next;
+			}
+			else
+			{
+				found = true;
+				break;
+			}
+		}
+		if (found == true)
+		{
+			myList.deleteAt(pos);
+			Tasks task;
+			cout << "\n\nEdit the task data ===>>\n\n";
 			cout << "Enter task name : ";
-			cin >> ptr->value.taskName;
+			cin >> task.taskName;
 			cout << "Enter task description : ";
-			cin >> ptr->value.taskDescription;
+			cin >> task.taskDescription;
 			cout << "Enter the assigning date : ";
-			cin >> ptr->value.assigningDate;
+			cin >> task.assigningDate;
 			cout << "Enter the ending date : ";
-			cin >> ptr->value.endingDate;
+			cin >> task.endingDate;
 			cout << "Task assigned to : ";
-			cin >> ptr->value.assignedTo;
+			cin >> task.assignedTo;
 			while (true)
 			{
 				cout << "Priority value from [ 1 - 9 ] : ";
-				cin >> ptr->value.priorityValues;
-				if (ptr->value.priorityValues > 0 && ptr->value.priorityValues < 10)
+				cin >> task.priorityValues;
+				if (task.priorityValues > 0 && task.priorityValues < 10)
 				{
 					break;
 				}
@@ -381,9 +403,32 @@ void Tasks::editTasks()
 					cout << "\n\nPriority value must be greater than 0 and less than 10!\n\n";
 				}
 			}
-			break;
+			myList.insert(task);
+			flag = false;
 		}
-		ptr = ptr->next;
+		else
+		{
+			cout << "\nThere is no task with this name...\n";
+			cout << "Press [1] to try again or [2] to continue\n\n";
+			while (true)
+			{
+				cout << "Your choice : ";
+				cin >> choice;
+				if (choice == 1)
+				{
+					break;
+				}
+				else if (choice == 2)
+				{
+					flag = false;
+					break;
+				}
+				else
+				{
+					cout << "\nInvalid choice, Please try again...\n\n";
+				}
+			}
+		}
 	}
 }
 
