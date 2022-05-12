@@ -39,6 +39,7 @@ bool Menu::ManagerPassword(Manager manager)
 		if (manager.managerPw == pass)
 		{
 			cout << " \n\n-------------------- Login successfully welcome back BOSS! --------------------\n\n";
+			flag = true;
 			break;
 		}
 		else
@@ -128,11 +129,11 @@ void Menu::ManagerPageMenu()
 	{
 		while (true)
 		{
-			cout << "[1] to add new Task\n[2] to display tasks\n[3] to edit existing task\n[4] to delete task\n";
+			cout << "[1] to add new Task\n[2] to display tasks\n[3] to display finished tasks\n[4] to edit existing task\n[5] to delete task\n";
 			cout << "Your choice : ";
 			cin >> choice;
 			cout << endl;
-			if (choice == 1 || choice == 2 || choice == 3 || choice == 4)
+			if (choice > 0 && choice <=5)
 			{
 				break;
 			}
@@ -150,9 +151,12 @@ void Menu::ManagerPageMenu()
 			task.displayTasks();
 			break;
 		case 3:
-			task.editTasks();
+			task.displayDoneTasks();
 			break;
 		case 4:
+			task.editTasks();
+			break;
+		case 5:
 			task.deleteTask();
 			break;
 		}
@@ -190,6 +194,7 @@ void Menu::employeePageMenu(Employee employee[])
 		while (true)
 		{
 			cout << "[1] to display your tasks\n[2] to remove finished task\n[3] postpone a task to another day\n";
+			cout << "Your choice : ";
 			cin >> choice;
 			cout << endl;
 			if (choice == 1 || choice == 2 || choice == 3)
@@ -208,6 +213,7 @@ void Menu::employeePageMenu(Employee employee[])
 			break;
 		case 2:
 			// to remove finished task
+			task.deleteDoneTasks(employee[userInControl].employeeName);
 			break;
 		case 3:
 			// postpone a task to another day
