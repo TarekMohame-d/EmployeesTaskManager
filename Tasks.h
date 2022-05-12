@@ -14,7 +14,9 @@ public:
 	int priorityValues;
 	void readTasks();
 	void displayTasks(); // for manager
+	void displayDoneTasks();
 	void deleteTask();
+	void deleteDoneTasks(string name);
 	void displayEmployeeTasks(string name);
 	void editTasks();
 	void defaultTasks();
