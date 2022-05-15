@@ -189,6 +189,7 @@ void Menu::employeePageMenu(Employee employee[])
 {
 	int choice;
 	bool flag = true;
+	task.reminderTask(employee[userInControl].employeeName);
 	while (flag == true)
 	{
 		while (true)
@@ -217,6 +218,7 @@ void Menu::employeePageMenu(Employee employee[])
 			break;
 		case 3:
 			// postpone a task to another day
+			task.postponeTask(employee[userInControl].employeeName);
 			break;
 		}
 		cout << "\n\nIf you want to make another operation please\n";

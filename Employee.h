@@ -8,4 +8,5 @@ public:
 	int employeeId;
 	int empDepartmentNumber;
 	void employeeData(Employee employee[]);
+	Employee();
 };

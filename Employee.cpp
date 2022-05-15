@@ -22,3 +22,10 @@ void Employee::employeeData(Employee employee[])
 	employee[4].employeeId = 104;
 	employee[4].empDepartmentNumber = 50;
 }
+
+Employee::Employee()
+{
+	employeeName = "";
+	employeeId = 0;
+	empDepartmentNumber = 0;
+}
