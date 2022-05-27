@@ -617,6 +617,7 @@ void Tasks::postponeTask(string name)
 						{
 							temp->value.assiDate.assigningDay = newDateDay;
 							cout << "\n\nThe task postponed successfully...\n";
+							break;
 						}
 					}
 				}
@@ -624,18 +625,22 @@ void Tasks::postponeTask(string name)
 				{
 					if (newDateMonth == temp->value.assiDate.assigningMonth)
 					{
-						if (newDateDay >= temp->value.assiDate.assigningDay)
+						if (newDateDay >= temp->value.assiDate.assigningDay && newDateDay <= 30)
 						{
 							temp->value.assiDate.assigningDay = newDateDay;
+							temp->value.assiDate.assigningMonth = newDateMonth;
 							cout << "\n\nThe task postponed successfully...\n";
+							break;
 						}
 					}
 					else if (newDateMonth == temp->value.endDate.endingMonth)
 					{
-						if (newDateDay <= temp->value.endDate.endingDay && newDateDay != 0)
+						if (newDateDay <= temp->value.endDate.endingDay && newDateDay > 0)
 						{
 							temp->value.assiDate.assigningDay = newDateDay;
+							temp->value.assiDate.assigningMonth = newDateMonth;
 							cout << "\n\nThe task postponed successfully...\n";
+							break;
 						}
 					}
 				}
