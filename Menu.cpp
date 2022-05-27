@@ -210,14 +210,15 @@ void Menu::employeePageMenu(Employee employee[])
 		switch (choice)
 		{
 		case 1:
+			// Display Employee Tasks
 			task.displayEmployeeTasks(employee[userInControl].employeeName);
 			break;
 		case 2:
-			// to remove finished task
+			// To remove finished task
 			task.deleteDoneTasks(employee[userInControl].employeeName);
 			break;
 		case 3:
-			// postpone a task to another day
+			// Postpone a task to another day
 			task.postponeTask(employee[userInControl].employeeName);
 			break;
 		}
