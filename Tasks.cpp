@@ -77,14 +77,24 @@ public:
 	void deleteAt(int pos)
 	{
 		Node* temp = head;
-		for (int i = 0; i < pos-1; i++)
+		if (pos == 0) // if the deleted node was the first node "Head"
 		{
-			temp = temp->next;
+			Node* ptr = head;
+			head = head->next;
+			delete ptr;
+			count--;
 		}
-		Node* d = temp->next;  // Point to the node that will be deleted
-		temp->next = d->next;
-		delete d;
-		count--;
+		else
+		{
+			for (int i = 0; i < pos - 1; i++)
+			{
+				temp = temp->next;
+			}
+			Node* d = temp->next;  // Point to the node that will be deleted
+			temp->next = d->next;
+			delete d;
+			count--;
+		}
 	}
 };
 
