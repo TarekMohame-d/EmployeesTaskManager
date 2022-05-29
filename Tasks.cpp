@@ -79,9 +79,8 @@ public:
 		Node* temp = head;
 		if (pos == 0) // if the deleted node was the first node "Head"
 		{
-			Node* ptr = head;
 			head = head->next;
-			delete ptr;
+			delete temp;
 			count--;
 		}
 		else
@@ -90,10 +89,21 @@ public:
 			{
 				temp = temp->next;
 			}
-			Node* d = temp->next;  // Point to the node that will be deleted
-			temp->next = d->next;
-			delete d;
-			count--;
+			if (pos == (count-1)) // if the deleted node was the last node "Tail"
+			{
+				Node* ptr = tail;
+				tail = temp;
+				tail->next = 0;
+				delete ptr;
+				count--;
+			}
+			else
+			{
+				Node* d = temp->next;  // Point to the node that will be deleted
+				temp->next = d->next;
+				delete d;
+				count--;
+			}
 		}
 	}
 };
